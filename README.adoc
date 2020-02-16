@@ -1,0 +1,15 @@
+# Action monitor a simple messaging service
+
+## Run via Docker
+
+`docker-compose up` will start all the necessary service.
+
+## Architecture
+
+### Service
+
+### UI
+
+### Persistence
+
+### Messaging
