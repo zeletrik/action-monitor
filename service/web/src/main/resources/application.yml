@@ -4,3 +4,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/monitor
     username: docker
     password: s3cr3t
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+
+  jpa:
+    database-platform: postgres
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
