@@ -25,6 +25,7 @@
         <postgre.version>42.2.10</postgre.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <lombok.version>1.18.12</lombok.version>
+        <reactor-netty.version>0.9.4.RELEASE</reactor-netty.version>
     </properties>
 
     <dependencyManagement>
@@ -69,7 +70,11 @@
                 <artifactId>spring-boot-starter-websocket</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.projectreactor.netty</groupId>
+                <artifactId>reactor-netty</artifactId>
+                <version>${reactor-netty.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
