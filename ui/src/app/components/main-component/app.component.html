@@ -1,0 +1,64 @@
+<div *ngIf="loggedIn; else loginPanel">
+    <mat-grid-list cols="3" rowHeight="100px">
+            <mat-grid-tile colspan="3" rowspan="1" style="background-color: grey;">
+                <div>
+                    <p>Welcome to the action monitor <strong>{{user.username}}</strong> !</p>
+                    <p>To send message to somebody just select from the sidebar</p> 
+                </div>
+               
+               <button style="position: absolute; top: 16px; right: 16px;" mat-raised-button color="primary" (click)="logout()">Logout</button>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="7" style="overflow-y: scroll;">
+                <div class="col-wrapper">
+                    <p>User list</p>
+                    <mat-accordion class="users">         
+                        <mat-expansion-panel *ngFor="let user of users">
+                            <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{user.username}}
+                            </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div>
+                                <form class="send-form" [formGroup]="sendGroup">
+                                    <mat-form-field >
+                                        <input matInput placeholder="Message" type="text" formControlName="text">
+                                    </mat-form-field>
+                              </form>
+                              <button mat-raised-button color="primary" (click)="sendMessage(user.username)">Send</button>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" rowspan="7" style="background-color: lightgrey; overflow-y: scroll;">
+            <div class="col-wrapper">
+
+                <mat-card *ngFor="let msg of messages" style="margin-bottom: 10px; width: 70%;">
+
+                    <mat-card-header *ngIf="msg.from == user.username" style="background-color: lightseagreen;">
+                      <mat-card-subtitle>To: {{msg.to}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-header *ngIf="msg.from != user.username">
+                      <mat-card-subtitle>From: {{msg.from}}</mat-card-subtitle>
+                      <mat-card-subtitle>Time: {{msg.time | date:'medium' }}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        Message: {{msg.text}}
+                    </mat-card-content>
+                  </mat-card>
+
+            </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="3" rowspan="1" style="background-color: grey;">
+                <div>
+                    <p>Server status: {{serverStatus}} - Server version: {{serverVersion}}</p> 
+                </div>
+            </mat-grid-tile>
+    </mat-grid-list>
+</div>
+  
+<ng-template #loginPanel>
+    <app-login-panel (authStatus)="authStateChanger($event)"></app-login-panel>
+</ng-template>

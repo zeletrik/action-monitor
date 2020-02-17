@@ -20,3 +20,15 @@ relay:
   port: 61613
   username: admin
   password: admin
+
+management:
+  endpoints:
+    web:
+      base-path: /info
+      exposure:
+        include: ['health', 'info']
+      path-mapping:
+        health: /health
+        info: /version
+info:
+    version: '@app.version@'

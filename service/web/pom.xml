@@ -11,6 +11,10 @@
 
     <artifactId>web</artifactId>
 
+    <properties>
+        <app.version>${project.parent.version}</app.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>hu.zeletrik.example</groupId>
@@ -62,6 +66,15 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/application*.yml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
