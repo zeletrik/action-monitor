@@ -23,6 +23,8 @@
         <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
         <spring.version>5.2.2.RELEASE</spring.version>
         <postgre.version>42.2.10</postgre.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -69,10 +71,23 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgre.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
