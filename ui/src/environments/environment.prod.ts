@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backendEndpoint: 'action-monitor:8080'
 };

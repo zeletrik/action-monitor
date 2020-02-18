@@ -1,0 +1,33 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title class="headline">Action Monitor Login</mat-card-title>
+    </mat-card-header>
+    <form class="login-form" [formGroup]="loginGroup">
+
+      <mat-form-field class="login-full-width" >
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="loginGroup.get('username').hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="login-full-width" >
+          <input matInput placeholder="Password" type="password" formControlName="password">
+          <mat-error *ngIf="loginGroup.get('password').hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="login-button" (click)="login()">Login</button>
+
+        <div  class="login-full-width error">
+          <mat-error *ngIf="loginFailed">
+            The username or password you entered is <strong>incorrect</strong> :( 
+          </mat-error>
+        </div>
+    </form>
+  </mat-card>
+
+ </div>

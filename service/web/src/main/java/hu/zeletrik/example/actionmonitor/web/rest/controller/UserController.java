@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,15 +31,22 @@ public class UserController {
         this.conversionService = conversionService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<UserResponse>> findAllUser() {
+    @GetMapping("/others")
+    public ResponseEntity<List<UserResponse>> findAllUser(Principal currentUser) {
         LOGGER.info("Find all user flow  started");
         var users = userService.findAll().getBody()
                 .stream()
+                .filter(user -> !user.getUsername().equals(currentUser.getName()))
                 .map(dto -> conversionService.convert(dto, UserResponse.class))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<UserResponse> current(Principal currentUser) {
+        var user = UserResponse.builder().username(currentUser.getName()).build();
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/login")
