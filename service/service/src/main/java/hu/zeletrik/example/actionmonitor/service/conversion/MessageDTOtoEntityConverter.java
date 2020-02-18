@@ -1,11 +1,14 @@
 package hu.zeletrik.example.actionmonitor.service.conversion;
 
-import hu.zeletrik.example.actionmonitor.data.entity.MessageEntity;
-import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
-import hu.zeletrik.example.actionmonitor.service.dto.MessageDTO;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+
+import hu.zeletrik.example.actionmonitor.data.entity.MessageEntity;
+import hu.zeletrik.example.actionmonitor.data.entity.UserEntity;
+import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
+import hu.zeletrik.example.actionmonitor.service.dto.MessageDTO;
+import hu.zeletrik.example.actionmonitor.service.security.exception.NoUserFoundException;
 
 @Component
 public class MessageDTOtoEntityConverter implements Converter<MessageDTO, MessageEntity> {
@@ -18,11 +21,17 @@ public class MessageDTOtoEntityConverter implements Converter<MessageDTO, Messag
     }
 
     @Override
-    public MessageEntity convert(MessageDTO messageDTO) {
-        var fromId = userRepository.findByUsername(messageDTO.getFrom()).getUser_id();
-        var toId = userRepository.findByUsername(messageDTO.getTo()).getUser_id();
+    public MessageEntity convert(MessageDTO messageDTO) throws NoUserFoundException{
 
-        var entity = new MessageEntity();
+        var fromId = userRepository.findByUsername(messageDTO.getFrom())
+                .map(UserEntity::getUser_id)
+                .orElseThrow(() -> new NoUserFoundException("No user found in the database for name=" + messageDTO.getFrom()));
+
+        var toId = userRepository.findByUsername(messageDTO.getTo())
+                .map(UserEntity::getUser_id)
+                .orElseThrow(() -> new NoUserFoundException("No user found in the database for name=" + messageDTO.getTo()));
+
+        final var entity = new MessageEntity();
         entity.setFrom(fromId);
         entity.setTo(toId);
         entity.setText(messageDTO.getText());

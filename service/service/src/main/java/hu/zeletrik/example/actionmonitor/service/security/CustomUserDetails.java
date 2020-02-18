@@ -1,13 +1,18 @@
 package hu.zeletrik.example.actionmonitor.service.security;
 
-import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
-import lombok.Getter;
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Collection;
+import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
+@EqualsAndHashCode
 public class CustomUserDetails extends User {
 
     private UserDTO user;

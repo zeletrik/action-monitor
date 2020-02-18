@@ -1,5 +1,7 @@
 package hu.zeletrik.example.actionmonitor.service.security;
 
+import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -10,8 +12,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Objects;
-
 public class CustomDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomDaoAuthenticationProvider.class);
@@ -21,7 +21,7 @@ public class CustomDaoAuthenticationProvider extends DaoAuthenticationProvider {
         final var name = authentication.getName();
         final var password = authentication.getCredentials().toString();
         UserDetails user = null;
-        UsernamePasswordAuthenticationToken result = null;
+        UsernamePasswordAuthenticationToken result;
 
         try {
             user = getUserDetailsService().loadUserByUsername(name);
