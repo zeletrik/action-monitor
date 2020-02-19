@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  action-monitor-db:
+    build: ./database
+    container_name: action-monitor-db
+    ports:
+      - 5432:5432
+
+  action-monitor-activemq:
+    image: rmohr/activemq:5.15.9
+    container_name: action-monitor-activemq
+    ports:
+      - 61616:61616 
+      - 8161:8161 
+      - 61613:61613
+
+  action-monitor-service:
+    image: zeletrik/action-monitor-service:latest
+    container_name: action-monitor-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://action-monitor-db:5432/monitor
+    ports:
+      - 8080:8080
+    links:
+      - action-monitor-db
+      - action-monitor-activemq
+
+  action-monitor-ui:
+    build: ./ui
+    container_name: action-monitor-ui
+    ports:
+      - 3030:80
+    links:
+      - action-monitor-service

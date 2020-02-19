@@ -54,6 +54,11 @@
         <checkstyle.basedir>${main.basedir}/build/rules</checkstyle.basedir>
         <checkstyle.config.location>${checkstyle.basedir}/checkstyle_rules.xml</checkstyle.config.location>
         <checkstyle.suppressions.location>${checkstyle.basedir}/suppressions.xml</checkstyle.suppressions.location>
+
+        <!-- Docker -->
+        <docker-maven-plugin.version>1.0.0</docker-maven-plugin.version>
+        <docker.image.name>action-monitor-service</docker.image.name>
+        <docker.organisation>zeletrik</docker.organisation>
     </properties>
 
     <dependencyManagement>
@@ -173,6 +178,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>container</id>
+            <modules>
+                <module>container</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <build>
         <pluginManagement>
