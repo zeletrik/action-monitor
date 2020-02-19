@@ -21,6 +21,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=staging
       - SPRING_DATASOURCE_URL=jdbc:postgresql://action-monitor-db:5432/monitor
+      - RELAY_HOST=action-monitor-activemq
     ports:
       - 8080:8080
     links:
