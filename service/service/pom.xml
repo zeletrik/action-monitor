@@ -11,6 +11,11 @@
 
     <artifactId>service</artifactId>
 
+    <properties>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+        <main.report.dir>${project.parent.reporting.outputDirectory}/${project.artifactId}</main.report.dir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>hu.zeletrik.example</groupId>
@@ -28,6 +33,18 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
         </dependency>
     </dependencies>
 

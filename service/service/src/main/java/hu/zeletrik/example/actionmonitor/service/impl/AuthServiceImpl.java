@@ -1,9 +1,5 @@
 package hu.zeletrik.example.actionmonitor.service.impl;
 
-import hu.zeletrik.example.actionmonitor.service.AuthService;
-import hu.zeletrik.example.actionmonitor.service.dto.ServiceResponse;
-import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
-import hu.zeletrik.example.actionmonitor.service.security.CustomUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import hu.zeletrik.example.actionmonitor.service.AuthService;
+import hu.zeletrik.example.actionmonitor.service.dto.ServiceResponse;
+import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
+import hu.zeletrik.example.actionmonitor.service.security.CustomUserDetails;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -28,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public ServiceResponse<UserDTO> login(String username, String password) {
         var authenticated = false;
-        UserDTO.UserDTOBuilder userBuilder = UserDTO.builder();
+        final UserDTO.UserDTOBuilder userBuilder = UserDTO.builder();
         var authenticationTokenRequest = new UsernamePasswordAuthenticationToken(username, password);
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationTokenRequest);

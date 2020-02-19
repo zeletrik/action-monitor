@@ -2,10 +2,10 @@ package hu.zeletrik.example.actionmonitor.service.dto;
 
 import lombok.*;
 
+@Getter
 @Builder
 @EqualsAndHashCode
 @ToString(exclude = "password")
-@Getter
 public class UserDTO {
 
     private final Long user_id;

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN" "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+  <!-- relax rules in unit tests, we need less docs and magic numbers are commonplace in tests -->
+  <suppress checks="JavadocMethod|IllegalInstantiation|IllegalThrows|ClassFanOutComplexity|ClassDataAbstractionCoupling|FileLength|ParameterNumber" files=".*Mock.*java|.*Test.java|.*TestDataProvider.java" />
+  <!-- Suppress all checks for shell scripts-->
+  <suppress checks="[a-zA-Z0-9]*" files="[A-Za-z0-9]*.sh$" />
+  <!-- Suppressions for DTOs' all arg constructors that are needed for BULL-->
+  <suppress checks="ParameterNumber" files="[\\/]dto[\\/].*DTO.java" />
+  <suppress checks="ParameterNumber" files="[\\/]response[\\/].*Response.java" />
+  <!-- **** SPRING JAVA CONFIG SUPPRESSIONS START - suppressions look for 'config' in the package name and for the file to end with Config.java **** -->
+  <!-- Don't warn on non-Javadoc methods or class data abstraction coupling -->
+  <suppress checks="JavadocMethod|ClassDataAbstractionCoupling" files="[\\/]config[\\/].*Config.java" />
+  <!-- Don't warn or error on number of protected methods -->
+  <suppress id="MethodCountProtected_Error" files="[\\/]config[\\/].*Config.java" />
+  <suppress id="MethodCount_Warnings" files="[\\/]config[\\/].*Config.java" />
+  <!-- **** SPRING JAVA CONFIG SUPPRESSIONS END **** -->
+</suppressions>

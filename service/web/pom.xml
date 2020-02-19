@@ -13,6 +13,8 @@
 
     <properties>
         <app.version>${project.parent.version}</app.version>
+        <main.basedir>${project.parent.basedir}</main.basedir>
+        <main.report.dir>${project.parent.reporting.outputDirectory}/${project.artifactId}</main.report.dir>
     </properties>
 
     <dependencies>
@@ -49,21 +51,24 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
         </dependency>
     </dependencies>
-
 
     <build>
         <resources>

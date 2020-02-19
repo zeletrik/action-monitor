@@ -1,12 +1,12 @@
 package hu.zeletrik.example.actionmonitor.web.rest.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class LoginRequest {
     private String username;
     private String password;

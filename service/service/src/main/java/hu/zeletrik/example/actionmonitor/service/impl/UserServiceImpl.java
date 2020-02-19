@@ -1,18 +1,18 @@
 package hu.zeletrik.example.actionmonitor.service.impl;
 
-import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
-import hu.zeletrik.example.actionmonitor.service.dto.ServiceResponse;
-import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
-import hu.zeletrik.example.actionmonitor.service.UserService;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
+import hu.zeletrik.example.actionmonitor.service.UserService;
+import hu.zeletrik.example.actionmonitor.service.dto.ServiceResponse;
+import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,12 +30,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public ServiceResponse<UserDTO> findByUsername(String username) {
         LOGGER.info("Retrieve user with name={}", username);
-        var entity = userRepository.findByUsername(username);
-        var dto = conversionService.convert(entity, UserDTO.class);
-        return ServiceResponse.<UserDTO>builder()
-                .success(Objects.nonNull(entity))
-                .body(dto)
-                .build();
+        return userRepository.findByUsername(username)
+                .map(entity -> conversionService.convert(entity, UserDTO.class))
+                .map(dto -> ServiceResponse.<UserDTO>builder()
+                                .success(true)
+                                .body(dto)
+                                .build())
+                .orElse(ServiceResponse.<UserDTO>builder()
+                                .success(false)
+                                .body(UserDTO.builder().build())
+                                .build());
     }
 
     @Override

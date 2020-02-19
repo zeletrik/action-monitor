@@ -1,9 +1,8 @@
 package hu.zeletrik.example.actionmonitor.service.security;
 
-import hu.zeletrik.example.actionmonitor.data.entity.RoleEntity;
-import hu.zeletrik.example.actionmonitor.data.entity.UserEntity;
-import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
-import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
+import java.util.Collection;
+import java.util.HashSet;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
@@ -14,9 +13,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
+import hu.zeletrik.example.actionmonitor.data.entity.RoleEntity;
+import hu.zeletrik.example.actionmonitor.data.entity.UserEntity;
+import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
+import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
+import hu.zeletrik.example.actionmonitor.service.security.exception.NoUserFoundException;
 
 @Service
 public class AuthUserDetailsService implements UserDetailsService {
@@ -35,11 +36,10 @@ public class AuthUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomUserDetails result = null;
         try {
-            var entity = userRepository.findByUsername(username);
+            var entity = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new NoUserFoundException("No user found in the database"));
             var user = conversionService.convert(entity, UserDTO.class);
-            if (Objects.nonNull(user)) {
-                result = new CustomUserDetails(user, getAuthorities(entity));
-            }
+            result = new CustomUserDetails(user, getAuthorities(entity));
         } catch (Exception ex) {
             LOGGER.error("Exception in CustomUserDetailsService: " + ex);
         }
