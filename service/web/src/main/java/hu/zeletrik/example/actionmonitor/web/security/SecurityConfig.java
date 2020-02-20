@@ -1,7 +1,7 @@
 package hu.zeletrik.example.actionmonitor.web.security;
 
-import hu.zeletrik.example.actionmonitor.service.security.AuthUserDetailsService;
-import hu.zeletrik.example.actionmonitor.service.security.CustomDaoAuthenticationProvider;
+import java.util.Collections;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Collections;
+import hu.zeletrik.example.actionmonitor.service.security.CustomDaoAuthenticationProvider;
 
+/**
+ * Spring Security related configurations.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

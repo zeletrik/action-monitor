@@ -19,6 +19,9 @@ import hu.zeletrik.example.actionmonitor.data.repository.UserRepository;
 import hu.zeletrik.example.actionmonitor.service.dto.UserDTO;
 import hu.zeletrik.example.actionmonitor.service.security.exception.NoUserFoundException;
 
+/**
+ * Custom implementation of {@link UserDetailsService} to handle auth flow.
+ */
 @Service
 public class AuthUserDetailsService implements UserDetailsService {
 
