@@ -30,11 +30,15 @@ CREATE TABLE message(
 
 
 INSERT INTO am_user (user_id, username, password)
-VALUES (1, 'user', 'password');
+VALUES (1, 'user', 'pass');
 INSERT INTO am_user (user_id, username, password)
-VALUES (2, 'admin','password');
+VALUES (2, 'admin','pass');
 INSERT INTO am_user (user_id, username, password)
-VALUES (3, 'mary','password');
+VALUES (3, 'patrik','pass');
+INSERT INTO am_user (user_id, username, password)
+VALUES (4, 'test','pass');
+INSERT INTO am_user (user_id, username, password)
+VALUES (5, 'zeletrik','pass');
 
 INSERT INTO role (role_id, role)
 VALUES (1, 'USER');
