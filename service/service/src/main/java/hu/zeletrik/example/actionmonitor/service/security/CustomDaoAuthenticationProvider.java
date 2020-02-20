@@ -12,6 +12,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+/**
+ * Custom implementation of {@link DaoAuthenticationProvider} to handle auth flow.
+ */
 public class CustomDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomDaoAuthenticationProvider.class);
