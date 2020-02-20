@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/monitor
+    username: docker
+    password: s3cr3t
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+
+  jpa:
+    database-platform: postgres
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+
+relay:
+  host: localhost
+  port: 61613
+  username: admin
+  password: admin
+
+management:
+  endpoints:
+    web:
+      base-path: /info
+      exposure:
+        include: ['health', 'info']
+      path-mapping:
+        health: /health
+        info: /version
+info:
+    version: '@app.version@'
