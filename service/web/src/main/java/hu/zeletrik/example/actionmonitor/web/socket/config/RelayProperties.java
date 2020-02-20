@@ -1,9 +1,13 @@
 package hu.zeletrik.example.actionmonitor.web.socket.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.Data;
+
+/**
+ * Configuration property class to hold message relay related config.
+ */
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "relay")

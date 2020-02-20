@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import hu.zeletrik.example.actionmonitor.service.security.CustomUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
@@ -37,6 +36,11 @@ public class UserController {
         this.conversionService = conversionService;
     }
 
+    /**
+     * Retrieve all other users.
+     * @param currentUser the principal handled by Spring Security.
+     * @return the list of {@link UserResponse} excluding the current one.
+     */
     @GetMapping("/others")
     public ResponseEntity<List<UserResponse>> findAllOtherUser(Principal currentUser) {
         LOGGER.info("Find all user flow  started");
@@ -49,6 +53,11 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    /**
+     * Retrieve the current user.
+     * @param currentUser the principal handled by Spring Security.
+     * @return the {@link UserResponse} of the currently authenticated user.
+     */
     @GetMapping("/current")
     public ResponseEntity<UserResponse> retrieveCurrentUser(Principal currentUser) {
         var serviceResponse = userService.findByUsername(currentUser.getName());
@@ -63,6 +72,11 @@ public class UserController {
                 .body(user);
     }
 
+    /**
+     * Initiate login flow.
+     * @param loginRequest a {@link LoginRequest} body.
+     * @return The authenticated user or an error.
+     */
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@RequestBody LoginRequest loginRequest) {
         var serviceResponse = authService.login(loginRequest.getUsername(), loginRequest.getPassword());
