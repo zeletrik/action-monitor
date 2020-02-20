@@ -4,7 +4,9 @@
 
 Action monitor is a simple messaging service over STOMP with an ActiveMQ message broker, a PostgreSQL data persistence, an Angular 9 front-end and of course a Spring framework powered Java back-end service.
 
-`docker-compose up` will build/start all the necessary service.
+`docker-compose up` will build/start all the necessary services.
+
+Note: If the service not built locally it will try to pull it from Docher Hub. If it fails please refer the Service/How to build & run/Docker paragraph.
 
 ## Architecture
 
@@ -13,7 +15,7 @@ image::action-monitor-arch.png[architecture]
 
 ### Service
 
-#### How to build/run
+#### How to build & run
 
 The service is a maven project so for the build just use maven in the project root: `$ mvn clean install`. This will automatically build all module and runs the Checkstyle plugin. The tests are also executed in this phase and a Jacocco report is generated.
 
@@ -24,7 +26,7 @@ Also, the application is powered by Spring Boot so the running is as easy as `$ 
 #### Docker
 
 The application is designed to run inside a Docker container. Also, a maven module and profile is provided to make docker image creation a piece of cake.
-`$ mvn clean install -Pdocker` will build the service and creates a docker image `zeletrik/action-monitor-service` with tags `latest` and the current project version.
+`$ mvn clean install -Pcontainer` will build the service and creates a docker image `zeletrik/action-monitor-service` with tags `latest` and the current project version.
 To run from container just use `docker run --rm -p 8000:8080 zeletrik/action-monitor-service:latest`.
 
 NOTE: By default, the container will run the application with the _container_ Spring profile so the logs will represents as JSONs.
