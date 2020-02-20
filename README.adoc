@@ -6,7 +6,7 @@ Action monitor is a simple messaging service over STOMP with an ActiveMQ message
 
 `docker-compose up` will build/start all the necessary services.
 
-Note: If the service not built locally it will try to pull it from Docher Hub. If it fails please refer the Service/How to build & run/Docker paragraph.
+Note: If the service not built locally it will try to pull it from Docher Hub. If it fails please refer the _Service/How to build & run/Docker_ paragraph.
 
 ## Architecture
 
