@@ -11,9 +11,11 @@ Action monitor is a simple messaging service over STOMP with an ActiveMQ message
 - Database: localhost:5432
 - MQ: localhost:8161
 
+NOTE: The users can be found in the database init script under _/database_.
+
 image::action-monitor.gif[demo]
 
-Note: If the service not built locally it will try to pull it from Docher Hub. If it fails please refer the _Service/How to build & run/Docker_ paragraph.
+NOTE: If the service not built locally it will try to pull it from Docher Hub. If it fails please refer the _Service/How to build & run/Docker_ paragraph.
 
 ## Architecture
 
