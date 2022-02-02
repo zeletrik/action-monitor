@@ -22,7 +22,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
         <spring.version>5.2.2.RELEASE</spring.version>
-        <postgre.version>42.2.10</postgre.version>
+        <postgre.version>42.2.25</postgre.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <lombok.version>1.18.12</lombok.version>
         <reactor-netty.version>0.9.4.RELEASE</reactor-netty.version>
