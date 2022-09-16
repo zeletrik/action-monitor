@@ -35,7 +35,7 @@
         <mockito.version>3.2.4</mockito.version>
         <hamcrest.version>2.2</hamcrest.version>
         <logstash.version>6.3</logstash.version>
-        <snakeyaml.version>1.25</snakeyaml.version>
+        <snakeyaml.version>1.31</snakeyaml.version>
 
         <!-- Jacoco -->
         <skipJacoco>false</skipJacoco>
